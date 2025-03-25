@@ -14,25 +14,22 @@ const Calendar: React.FC<CalendarProps> = ({
   onDateSelect,
   selectedDate
 }) => {
-  const renderDay = (
-    date: Date,
-    selectedDates: Array<Date | null>,
-    pickersDayProps: PickersDayProps<Date>
-  ) => {
+  const renderDay = (props: PickersDayProps<Date>) => {
+    const { day } = props;
     const hasGames = datesWithGames.some(
       gameDate =>
-        gameDate.getDate() === date.getDate() &&
-        gameDate.getMonth() === date.getMonth() &&
-        gameDate.getFullYear() === date.getFullYear()
+        gameDate.getDate() === day.getDate() &&
+        gameDate.getMonth() === day.getMonth() &&
+        gameDate.getFullYear() === day.getFullYear()
     );
 
     return (
       <Badge
-        key={date.toString()}
+        key={day.toString()}
         overlap="circular"
         badgeContent={hasGames ? "🏓" : undefined}
       >
-        <PickersDay {...pickersDayProps} />
+        <PickersDay {...props} />
       </Badge>
     );
   };
