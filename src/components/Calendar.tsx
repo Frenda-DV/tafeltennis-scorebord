@@ -1,4 +1,5 @@
 import React from 'react';
+import { Paper, Typography } from '@mui/material';
 import { DateCalendar } from '@mui/x-date-pickers';
 import { Badge } from '@mui/material';
 import { PickersDay, PickersDayProps } from '@mui/x-date-pickers/PickersDay';
@@ -35,25 +36,35 @@ const Calendar: React.FC<CalendarProps> = ({
   };
 
   return (
-    <DateCalendar
-      value={selectedDate}
-      onChange={onDateSelect}
-      slots={{ day: renderDay }}
-      sx={{
-        width: '100%',
-        maxWidth: 350,
-        margin: '0 auto',
-        '& .MuiPickersDay-root': {
-          color: 'white',
-          '&.Mui-selected': {
-            backgroundColor: '#1976d2',
-            '&:hover': {
-              backgroundColor: '#1565c0'
+    <Paper 
+      elevation={3} 
+      sx={{ 
+        p: 3,
+        bgcolor: 'background.paper'
+      }}
+    >
+      <Typography variant="h5" gutterBottom sx={{ color: '#1976d2' }}>
+        Kalender
+      </Typography>
+      <DateCalendar
+        value={selectedDate}
+        onChange={onDateSelect}
+        slots={{ day: renderDay }}
+        sx={{
+          width: '100%',
+          maxWidth: 350,
+          margin: '0 auto',
+          '& .MuiPickersDay-root': {
+            '&.Mui-selected': {
+              backgroundColor: '#1976d2',
+              '&:hover': {
+                backgroundColor: '#1565c0'
+              }
             }
           }
-        }
-      }}
-    />
+        }}
+      />
+    </Paper>
   );
 };
 
