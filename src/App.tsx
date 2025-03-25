@@ -1,11 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Box } from '@mui/material';
+import { Container, Typography, Box, ThemeProvider, createTheme } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { nl } from 'date-fns/locale';
 import GameForm from './components/GameForm';
 import GameList from './components/GameList';
 import Stats from './components/Stats';
 import Calendar from './components/Calendar';
 import PlayerDetailStats from './components/PlayerDetailStats';
 import { Game, PlayerStats } from './types';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#9c27b0',
+    },
+  },
+});
 
 const App: React.FC = () => {
   const [games, setGames] = useState<Game[]>(() => {
@@ -69,38 +83,55 @@ const App: React.FC = () => {
   const datesWithGames = games.map(game => new Date(game.date));
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Typography variant="h3" component="h1" gutterBottom align="center" sx={{ color: '#1976d2' }}>
-        Tafeltennis Scorebord
-      </Typography>
-      
-      <Stats stats={stats} />
-      
-      <Box sx={{ my: 4 }}>
-        <GameForm onSubmit={addGame} />
-      </Box>
+    <ThemeProvider theme={theme}>
+      <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={nl}>
+        <Container maxWidth="md" sx={{ py: 4 }}>
+          <Typography 
+            variant="h3" 
+            component="h1" 
+            gutterBottom 
+            align="center" 
+            sx={{ 
+              color: '#1976d2',
+              fontWeight: 500,
+              mb: 4
+            }}
+          >
+            Tafeltennis Scorebord
+          </Typography>
+          
+          <Stats stats={stats} />
+          
+          <Box sx={{ my: 4 }}>
+            <Typography variant="h5" gutterBottom sx={{ color: '#1976d2' }}>
+              Nieuwe Game
+            </Typography>
+            <GameForm onSubmit={addGame} />
+          </Box>
 
-      <Box sx={{ my: 4 }}>
-        <Calendar 
-          datesWithGames={datesWithGames}
-          onDateSelect={setSelectedDate}
-          selectedDate={selectedDate}
-        />
-      </Box>
+          <Box sx={{ my: 4 }}>
+            <Calendar 
+              datesWithGames={datesWithGames}
+              onDateSelect={setSelectedDate}
+              selectedDate={selectedDate}
+            />
+          </Box>
 
-      {selectedDate && (
-        <Box sx={{ my: 4 }}>
-          <GameList 
-            games={filteredGames} 
-            onDelete={deleteGame}
-          />
-        </Box>
-      )}
+          {selectedDate && (
+            <Box sx={{ my: 4 }}>
+              <GameList 
+                games={filteredGames} 
+                onDelete={deleteGame}
+              />
+            </Box>
+          )}
 
-      <Box sx={{ my: 4 }}>
-        <PlayerDetailStats games={games} />
-      </Box>
-    </Container>
+          <Box sx={{ my: 4 }}>
+            <PlayerDetailStats games={games} />
+          </Box>
+        </Container>
+      </LocalizationProvider>
+    </ThemeProvider>
   );
 };
 
