@@ -7,7 +7,8 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
-  Paper
+  Paper,
+  Typography
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import { Game } from '../types';
@@ -41,7 +42,17 @@ const GameForm: React.FC<GameFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <Paper elevation={3} sx={{ p: 3, bgcolor: 'background.paper' }}>
+    <Paper 
+      elevation={3} 
+      sx={{ 
+        p: 3, 
+        bgcolor: '#1a237e',
+        color: 'white'
+      }}
+    >
+      <Typography variant="h5" gutterBottom sx={{ color: 'white' }}>
+        Nieuwe Game Toevoegen
+      </Typography>
       <Box
         component="form"
         onSubmit={handleSubmit}
@@ -55,15 +66,44 @@ const GameForm: React.FC<GameFormProps> = ({ onSubmit }) => {
           label="Datum"
           value={date}
           onChange={(newDate) => setDate(newDate)}
-          sx={{ width: '100%' }}
+          sx={{
+            width: '100%',
+            '& .MuiInputLabel-root': {
+              color: 'white'
+            },
+            '& .MuiOutlinedInput-root': {
+              color: 'white',
+              '& fieldset': {
+                borderColor: 'rgba(255, 255, 255, 0.23)'
+              },
+              '&:hover fieldset': {
+                borderColor: 'rgba(255, 255, 255, 0.87)'
+              }
+            },
+            '& .MuiIconButton-root': {
+              color: 'white'
+            }
+          }}
         />
 
         <FormControl fullWidth>
-          <InputLabel>Winnaar</InputLabel>
+          <InputLabel sx={{ color: 'white' }}>Winnaar</InputLabel>
           <Select
             value={winner}
             label="Winnaar"
             onChange={(e) => setWinner(e.target.value as 'Danielle' | 'Frank')}
+            sx={{
+              color: 'white',
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderColor: 'rgba(255, 255, 255, 0.23)'
+              },
+              '&:hover .MuiOutlinedInput-notchedOutline': {
+                borderColor: 'rgba(255, 255, 255, 0.87)'
+              },
+              '& .MuiSvgIcon-root': {
+                color: 'white'
+              }
+            }}
           >
             <MenuItem value="Danielle">Danielle</MenuItem>
             <MenuItem value="Frank">Frank</MenuItem>
@@ -76,7 +116,21 @@ const GameForm: React.FC<GameFormProps> = ({ onSubmit }) => {
           value={score}
           onChange={(e) => setScore(e.target.value)}
           fullWidth
-          sx={{ gridColumn: { xs: '1', md: 'auto' } }}
+          sx={{
+            gridColumn: { xs: '1', md: 'auto' },
+            '& .MuiInputLabel-root': {
+              color: 'white'
+            },
+            '& .MuiOutlinedInput-root': {
+              color: 'white',
+              '& fieldset': {
+                borderColor: 'rgba(255, 255, 255, 0.23)'
+              },
+              '&:hover fieldset': {
+                borderColor: 'rgba(255, 255, 255, 0.87)'
+              }
+            }
+          }}
         />
 
         <TextField
@@ -85,19 +139,36 @@ const GameForm: React.FC<GameFormProps> = ({ onSubmit }) => {
           value={loserScore}
           onChange={(e) => setLoserScore(e.target.value)}
           fullWidth
-          sx={{ gridColumn: { xs: '1', md: 'auto' } }}
+          sx={{
+            gridColumn: { xs: '1', md: 'auto' },
+            '& .MuiInputLabel-root': {
+              color: 'white'
+            },
+            '& .MuiOutlinedInput-root': {
+              color: 'white',
+              '& fieldset': {
+                borderColor: 'rgba(255, 255, 255, 0.23)'
+              },
+              '&:hover fieldset': {
+                borderColor: 'rgba(255, 255, 255, 0.87)'
+              }
+            }
+          }}
         />
 
         <Button
           type="submit"
           variant="contained"
-          color="primary"
           fullWidth
           disabled={!date || !winner || !score || !loserScore}
           sx={{
             gridColumn: { xs: '1', md: '1 / -1' },
             mt: { xs: 1, md: 2 },
-            height: 48
+            height: 48,
+            bgcolor: '#3f51b5',
+            '&:hover': {
+              bgcolor: '#3949ab'
+            }
           }}
         >
           Game Toevoegen

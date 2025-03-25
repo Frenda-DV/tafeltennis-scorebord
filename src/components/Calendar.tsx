@@ -40,10 +40,11 @@ const Calendar: React.FC<CalendarProps> = ({
       elevation={3} 
       sx={{ 
         p: 3,
-        bgcolor: 'background.paper'
+        bgcolor: '#1a237e',
+        color: 'white'
       }}
     >
-      <Typography variant="h5" gutterBottom sx={{ color: '#1976d2' }}>
+      <Typography variant="h5" gutterBottom sx={{ color: 'white' }}>
         Kalender
       </Typography>
       <DateCalendar
@@ -54,13 +55,31 @@ const Calendar: React.FC<CalendarProps> = ({
           width: '100%',
           maxWidth: 350,
           margin: '0 auto',
+          bgcolor: '#1a237e',
+          color: 'white',
           '& .MuiPickersDay-root': {
+            color: 'white',
+            '&:hover': {
+              backgroundColor: '#3949ab'
+            },
             '&.Mui-selected': {
-              backgroundColor: '#1976d2',
+              backgroundColor: '#3f51b5',
               '&:hover': {
-                backgroundColor: '#1565c0'
+                backgroundColor: '#3949ab'
               }
             }
+          },
+          '& .MuiDayCalendar-weekDayLabel': {
+            color: 'white'
+          },
+          '& .MuiPickersCalendarHeader-label': {
+            color: 'white'
+          },
+          '& .MuiPickersCalendarHeader-switchViewButton': {
+            color: 'white'
+          },
+          '& .MuiPickersArrowSwitcher-button': {
+            color: 'white'
           }
         }}
       />
