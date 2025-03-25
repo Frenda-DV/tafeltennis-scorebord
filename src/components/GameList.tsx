@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { format } from 'date-fns';
-import { nl } from 'date-fns/locale/nl';
+import { nl } from 'date-fns/locale';
 import { Game } from '../types';
 
 interface GameListProps {
