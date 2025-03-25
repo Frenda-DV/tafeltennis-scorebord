@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, Box, ThemeProvider, createTheme } from '@mui/material';
-import GameForm from './components/GameForm';
-import GameList from './components/GameList';
-import Stats from './components/Stats';
-import Calendar from './components/Calendar';
-import PlayerDetailStats from './components/PlayerDetailStats';
+import { GameForm, GameList, Stats, Calendar, PlayerDetailStats } from './components';
 import { Game, PlayerStats } from './types';
 
 const theme = createTheme({
